@@ -22,36 +22,4 @@ model User {
   limitFreeTrial Int          @default(0)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt()
-
-  teams     TeamMember[]
-  invitations  Invitation[] @relation("UserInvitations")
-}
-
-model Team {
-  id           String       @id @default(cuid())
-  name         String
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  members      TeamMember[]
-  invitations  Invitation[] @relation("TeamInvitations")
-}
-
-model TeamMember {
-  id           String       @id @default(cuid())
-  userId       String
-  teamId       String
-  role         String       @default("member")
-  user         User         @relation(fields: [userId], references: [id])
-  team         Team         @relation(fields: [teamId], references: [id])
-
-  @@unique([userId, teamId])
-}
-
-model Invitation {
-  id           String       @id @default(cuid())
-  teamId       String
-  userId       String?
-  status       String       @default("pending")
-  team         Team         @relation(fields: [teamId], references: [id], name: "TeamInvitations")
-  user         User?        @relation(fields: [userId], references: [id], name: "UserInvitations")
 }
