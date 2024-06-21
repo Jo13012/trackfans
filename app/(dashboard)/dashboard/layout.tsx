@@ -1,7 +1,6 @@
-import Navbar from "@/components/navbar";
-import Sidebar from "@/components/sidebar";
 import { getApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
+import DashboardSidebar from "./_components/sidebar";
 
 const DashboardLayout = async ({
     children
@@ -17,14 +16,12 @@ const DashboardLayout = async ({
             <div className="hidden h-full md:flex
              md:w-72 md:flex-col md:fixed 
              md-inset-y-0 z-[80] bg-gray-900">
-                <Sidebar apiLimitCount={limit} isPro={isPro} / >
+                <DashboardSidebar apiLimitCount={limit} isPro={isPro} / >
             </div>
 
             <main className="md:pl-72">
-                <Navbar />
                 {children}
             </main>
-
         </div>
     );
 }

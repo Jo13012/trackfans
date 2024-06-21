@@ -1,14 +1,16 @@
 "use client";
 
+"use client";
+
+import { FreeCounter } from "@/components/FreeCounter";
 import { cn } from "@/lib/utils";
-import { BarChart2, Home, InspectionPanel, LayoutDashboard, MessageSquare, Settings, Share2, ShareIcon, Wallet } from "lucide-react";
+import { BarChart2, Home, InspectionPanel, Layers3, LayoutDashboard, LucidePersonStanding, MessageSquare, Settings, Share2, ShareIcon, Wallet } from "lucide-react";
 
 import { Montserrat } from "next/font/google";
 
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FreeCounter } from "./FreeCounter";
 
 const montserrat = Montserrat({
     weight: "600",
@@ -20,25 +22,25 @@ const routes = [
         label: "Accueil",
         icon: Home,
         href: "/dashboard",
-        color: "text-purple-500"
+        color: "text-red-400"
     },
     {
         label: "Statistiques",
         icon: BarChart2,
         href: "/statistiques",
-        color: "text-emerald-500"
+        color: "text-green-400"
     },
     {
-        label: "Conversations",
-        icon: MessageSquare,
-        href: "/conversations",
+        label: "Organizations",
+        icon: Layers3,
+        href: "/organizations",
         color: "text-blue-500"
     },
     {
         label: "Paiements",
         icon: Wallet,
         href: "/paiements",
-        color: "text-green-700"
+        color: "text-yellow-700"
     },
     {
         label: "Affiliations",
@@ -58,7 +60,7 @@ interface SidebarProps {
     isPro: boolean;
 }
 
-const Sidebar = ({
+const DashboardSidebar = ({
     apiLimitCount = 0,
     isPro = false,
 }: SidebarProps) => {
@@ -75,7 +77,7 @@ const Sidebar = ({
                 <div className="relative w-8 h-8 mr-4">
                     <Image
                         fill
-                        alt="Logo" src="/Logo.png" />
+                        alt="Logo" src="/logo.svg" />
                 </div>
                 <h1 className=
                 {cn("text-2xl font-bold", montserrat.className)}>
@@ -99,7 +101,7 @@ const Sidebar = ({
                         >
 
                             <div className="flex items-center flex-1">
-                               <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+                               <route.icon className={cn("h-5 w-5 mr-3 ", route.color)} />
                             {route.label}
                             </div>
 
@@ -112,4 +114,4 @@ const Sidebar = ({
     );
 }
 
-export default Sidebar;
+export default DashboardSidebar;
